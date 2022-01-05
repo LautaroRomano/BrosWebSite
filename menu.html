@@ -33,19 +33,20 @@
         <div class="container-fluid">
             <a href="index.html" class="navbar-brand"><img class="logo" src="./img/icoBrosLetra.png">
                 <span></span></a>
+
+            <button type="button" class="custom-carrito" data-toggle="modal" data-target="#CarritoModal" onclick="verCarrito()">
+                <i class="fas fa-shopping-cart btnCarrito-ico" style="color: aliceblue;"></i>
+                <div class="contador" id="contador" style="color: white;"></div>
+            </button>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="collapse navbar-collapse justify-content-between navbarCollapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="index.html" class="nav-item nav-link ">Inicio</a>
-                    <a href="menu.html" class="nav-item nav-link active">Menu</a>
-                    <a href="contact.html" class="nav-item nav-link">Contacto</a>
-                    <button type="button" class="btn btn-carrito" data-toggle="modal" data-target="#CarritoModal" onclick="verCarrito()">
-                        <i class="fas fa-shopping-cart btnCarrito-ico" style="color: aliceblue;"></i>
-                        <div class="contador" id="contador" style="color: white;"></div>
-                    </button>
+                    <a href="index.html" class="nav-item nav-link" style="color: white;">Inicio</a>
+                    <a href="menu.html" class="nav-item nav-link active" style="color: #bf2e27;">Menu</a>
+                    <a href="contact.html" class="nav-item nav-link" style="color: white;">Contacto</a>
                 </div>
             </div>
         </div>
