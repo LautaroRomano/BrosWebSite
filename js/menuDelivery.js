@@ -164,35 +164,97 @@ function sumarAlContador() {
 }
 
 function verCarrito() {
-    console.log('verCarrito')
-    let precio;
-    let cantidad;
-    let carritoModalBody = document.getElementById('CarritoModalBody');
+    if (comprobarSiEstaVacio()) {
 
+        let total = 0;
+        let precio;
+        let cantidad;
+        let carritoModalBody = document.getElementById('CarritoModalBody');
+
+        let padre = document.getElementById('padre');
+        padre.removeChild(carritoModalBody);
+
+        let nuevocarritoModalBody = document.createElement('div');
+        nuevocarritoModalBody.className += 'modal-body col-lg-7 col-md-12'
+        nuevocarritoModalBody.id = 'CarritoModalBody';
+        padre.appendChild(nuevocarritoModalBody);
+
+
+        carrito.forEach(elem => {
+            if (elem.cantidad > 0) {
+                menuItem = document.createElement('div');
+                menuItem.className += 'menu-item menu-item-custom';
+
+                menuText = document.createElement('div');
+                menuText.className += 'menu-text';
+                h3 = document.createElement('h3');
+                h3.className += 'h3-custom row';
+                span = document.createElement('span');
+                span.className = 'col';
+                precio = document.createElement('strong');
+                precio.className = 'col';
+                cantidad = document.createElement('strong');
+                cantidad.className = 'col';
+
+                span.innerHTML = elem.nombre;
+                precio.innerHTML = '$' + elem.precio;
+                cantidad.innerHTML = 'cantidad: ' + elem.cantidad;
+                h3.appendChild(span);
+                h3.appendChild(precio);
+                h3.appendChild(cantidad);
+
+                menuText.appendChild(h3);
+
+                menuItem.appendChild(menuText)
+
+                nuevocarritoModalBody.appendChild(menuItem);
+                total += elem.precio * elem.cantidad;
+            }
+        });
+        menuItem = document.createElement('div');
+        menuItem.className += 'menu-item menu-item-custom';
+        menuText = document.createElement('div');
+        menuText.className += 'menu-text';
+        h3 = document.createElement('h3');
+        h3.className += 'h3-custom row';
+        precio = document.createElement('strong');
+        precio.className = 'btn';
+        precio.style.color = '#ffffff';
+        precio.innerHTML = 'Total: $' + total;
+        h3.appendChild(precio);
+        menuText.appendChild(h3);
+        menuItem.appendChild(menuText)
+        nuevocarritoModalBody.appendChild(menuItem);
+
+        $('.hidden').removeClass("hidden")
+    } else {
+        $('.hidden').addClass("hidden")
+    }
+
+}
+
+function comprobarSiEstaVacio() {
+    let b = false;
     carrito.forEach(elem => {
-        if (elem.cantidad > 0) {
-            menuItem = document.createElement('div');
-            menuItem.className += 'menu-item';
-
-            menuText = document.createElement('div');
-            menuText.className += 'menu-text';
-            h3 = document.createElement('h3');
-            span = document.createElement('span');
-            precio = document.createElement('strong');
-            cantidad = document.createElement('strong');
-
-            span.innerHTML = elem.nombre;
-            precio.innerHTML = '$' + elem.precio;
-            cantidad.innerHTML = 'cantidad: ' + elem.cantidad;
-            h3.appendChild(span);
-            h3.appendChild(precio);
-            h3.appendChild(cantidad);
-
-            menuText.appendChild(h3);
-
-            menuItem.appendChild(menuText)
-
-            carritoModalBody.appendChild(menuItem);
-        }
+        if (elem.cantidad > 0) b = true;
     });
+    return b;
+}
+
+function hacerPedido(Apellido, Direccion) {
+    if (comprobarSiEstaVacio() && Apellido != '' && Direccion != '') {
+
+        let text = 'buenas noches, quisiera ordenar:%0A';
+        carrito.forEach(elem => {
+            if (elem.cantidad > 0) {
+                text += elem.nombre + ' cantidad: ' + elem.cantidad + '%0A';
+            }
+        });
+        text += 'mis datos son:' + '%0AApellido: ' + Apellido + ', ' + '%0ADireccion: ' + Direccion + '%0AEspero su confirmacion'
+        window.open('https://wa.me/+543865513846/?text=' + text);
+
+        $('.error').addClass("errorHidden")
+    } else {
+        $('.error').removeClass("errorHidden")
+    }
 }

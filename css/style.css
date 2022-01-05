@@ -1752,6 +1752,18 @@ a:focus {
     color: #e06907;
 }
 
+.modal-dialog {}
+
 .carritoModal {
     background-color: #161616;
+    text-align: center;
+}
+
+.h3-custom {
+    font-size: 18px;
+}
+
+.hidden,
+.errorHidden {
+    display: none;
 }
