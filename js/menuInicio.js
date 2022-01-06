@@ -1,79 +1,74 @@
-let carrito = [];
-
 const json = [{
     "id": 1,
     "imgsrc": "img/blog-1.jpg",
     "imgMuestraSrc": "img/blog-1.jpg",
     "nombre": "AMERICANA",
-    "precio": 480,
+    "etiqueta": 'Burguers',
     "descripcion": "Medallon de Carne - Cheddar - Cebolla Caramelizada - Huevo - Panceta - BBQ"
 }, {
     "id": 2,
     "imgsrc": "img/menu-doblecheese.jpg",
     "imgMuestraSrc": "img/menu-doblecheese-img.jpg",
     "nombre": "DOBLE CHEESE",
-    "precio": 510,
+    "etiqueta": 'Burguers',
     "descripcion": "Doble Carne - Doble Cheddar - Bacon - Aderezo de la Casa"
 }, {
     "id": 3,
     "imgsrc": "img/menu-TRIPLETE.jpg",
     "imgMuestraSrc": "img/menu-TRIPLETE-img.jpg",
     "nombre": "TRIPLETE",
-    "precio": 550,
+    "etiqueta": 'Burguers',
     "descripcion": "Triple Carne - Triple Cheddar - Aderezo de la Casa"
 }, {
     "id": 4,
     "imgsrc": "img/menu-burger.jpg",
     "imgMuestraSrc": "img/menu-burger-img.jpg",
     "nombre": 'GRAN "B"',
-    "precio": 510,
+    "etiqueta": 'Burguers',
     "descripcion": "Doble Carne - Cuatriple Cheddar - Cebolla - Ketchup"
 }, {
     "id": 5,
     "imgsrc": "img/menu-burger.jpg",
     "imgMuestraSrc": "img/menu-burger-img.jpg",
     "nombre": "FULL CLASIC",
-    "precio": 400,
+    "etiqueta": 'Burguers',
     "descripcion": "Medallon de Carne - Pepinillo - Lechuga - Tomate - Aderezo de la Casa"
 }, {
     "id": 6,
     "imgsrc": "img/menu-veggie.jpg",
     "imgMuestraSrc": "img/menu-veggie-img.jpg",
     "nombre": "VEGGIE BROS",
-    "precio": 380,
+    "etiqueta": 'Burguers',
     "descripcion": "Sin Carne pero con todo el Sabor de una Burguer"
 }, {
     "id": 7,
     "imgsrc": "img/menu-burger.jpg",
     "imgMuestraSrc": "img/menu-burger-img.jpg",
     "nombre": 'GRAN "BB"',
-    "precio": 680,
+    "etiqueta": 'Extrem Line',
     "descripcion": "Cuatriple Medallon - Cheddar - Ketchup - Cebolla en cubo"
 }, {
     "id": 8,
     "imgsrc": "img/menu-burger.jpg",
     "imgMuestraSrc": "img/menu-burger-img.jpg",
     "nombre": "LA BESTIA",
-    "precio": 700,
+    "etiqueta": 'Extrem Line',
     "descripcion": "Cuatriple Medallon - Cheddar - Cebolla Caramelizada - Panceta - BBQ"
 }, {
     "id": 9,
     "imgsrc": "img/menu-burger.jpg",
     "imgMuestraSrc": "img/menu-burger-img.jpg",
     "nombre": "AMERICAN BEST",
-    "precio": 510,
+    "etiqueta": 'Extrem Line',
     "descripcion": "Quintuple Medallon - Cheddar - Panceta - BBQ - Cebolla Caramelizada"
 }, {
     "id": 10,
     "imgsrc": "img/menu-burger.jpg",
     "imgMuestraSrc": "img/menu-burger-img.jpg",
     "nombre": "TRIPLE CHESSE BACON",
-    "precio": 600,
+    "etiqueta": 'Extrem Line',
     "descripcion": "Triple Carne - Triple Cheddar - Triple Bacon - Triple Aderezo"
 }, ]
-json.forEach(elem => {
-    carrito.push({ "id": elem.id, "nombre": elem.nombre, "precio": elem.precio, "cantidad": 0 });
-});
 
 let containerMenu
 let menuItem
@@ -116,7 +111,7 @@ json.forEach(elem => {
 
     p.innerHTML = elem.descripcion;
     span.innerHTML = elem.nombre;
-    strong.innerHTML = '$' + elem.precio;
+    strong.innerHTML = '$' + elem.etiqueta;
     h3.appendChild(span);
     h3.appendChild(strong);
 
@@ -168,7 +163,7 @@ function verCarrito(renderizar) {
     if (comprobarSiEstaVacio() || renderizar) {
 
         let total = 0;
-        let precio;
+        let etiqueta;
         let cantidad;
         let carritoModalBody = document.getElementById('CarritoModalBody');
 
@@ -193,16 +188,16 @@ function verCarrito(renderizar) {
                 h3.style.alignItems = 'center';
                 span = document.createElement('span');
                 span.className = 'col';
-                precio = document.createElement('strong');
-                precio.className = 'col';
+                etiqueta = document.createElement('strong');
+                etiqueta.className = 'col';
                 cantidad = document.createElement('strong');
                 cantidad.className = 'col';
 
                 span.innerHTML = elem.nombre;
-                precio.innerHTML = '$' + elem.precio;
+                etiqueta.innerHTML = '$' + elem.etiqueta;
                 cantidad.innerHTML = 'cantidad: ' + elem.cantidad;
                 h3.appendChild(span);
-                h3.appendChild(precio);
+                h3.appendChild(etiqueta);
                 h3.appendChild(cantidad);
 
                 //agregar btn de borar
@@ -236,7 +231,7 @@ function verCarrito(renderizar) {
                 menuItem.appendChild(menuText);
                 nuevocarritoModalBody.appendChild(menuItem);
 
-                total += elem.precio * elem.cantidad;
+                total += elem.etiqueta * elem.cantidad;
             }
         });
         menuItem = document.createElement('div');
@@ -245,11 +240,11 @@ function verCarrito(renderizar) {
         menuText.className += 'menu-text';
         h3 = document.createElement('h3');
         h3.className += 'h3-custom row';
-        precio = document.createElement('strong');
-        precio.className = 'btn';
-        precio.style.color = '#ffffff';
-        precio.innerHTML = 'Total: $' + total;
-        h3.appendChild(precio);
+        etiqueta = document.createElement('strong');
+        etiqueta.className = 'btn';
+        etiqueta.style.color = '#ffffff';
+        etiqueta.innerHTML = 'Total: $' + total;
+        h3.appendChild(etiqueta);
         menuText.appendChild(h3);
         menuItem.appendChild(menuText)
         nuevocarritoModalBody.appendChild(menuItem);

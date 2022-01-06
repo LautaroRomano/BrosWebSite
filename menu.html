@@ -39,12 +39,12 @@
             <a href="index.html" class="navbar-brand"><img class="logo" src="./img/icoBrosLetra.png">
                 <span></span></a>
 
-            <button type="button" class="custom-carrito" data-toggle="modal" data-target="#CarritoModal" onclick="verCarrito()">
+            <button type="button" class="custom-carrito" data-toggle="modal" data-target="#CarritoModal" onclick="verCarrito(false)">
                 <i class="fas fa-shopping-cart btnCarrito-ico" style="color: aliceblue;"></i>
                 <div class="contador" id="contador" style="color: white;"></div>
             </button>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fas fa-bars" style="color: white;"></i>
             </button>
 
             <div class="collapse navbar-collapse justify-content-between navbarCollapse" id="navbarCollapse">
@@ -138,7 +138,7 @@
                         <h5 class="modal-title">Tu carrito esta vacio :(</h5>
                     </div>
                 </div>
-                <div class="row hidden">
+                <div class="row datosDelivery hidden">
                     <div class="modal-body col-lg-7 col-md-12">
                         <div class="mb-3">
                             <label class="col-form-label">Apellido:</label>
